@@ -23,8 +23,8 @@ captcha_text = raw_input('CAPTCHA: ')
 
 post_data = {
     'service': '5;1;6',
-    'cardNumber': 'card_number',
-    'cpf': 'cpf',
+    'cardNumber': card_number,
+    'cpf': cpf,
     'jcaptcha_response': captcha_text,
     'x': '6',
     'y': '9',
