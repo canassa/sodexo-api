@@ -17,6 +17,17 @@ CAPTCHA_URL = 'https://sodexosaldocartao.com.br/saldocartao/jcaptcha.do'
 
 r = session.get(CAPTCHA_URL)
 i = Image.open(StringIO(r.content))
+
+pixel_data = i.load()
+
+for x in xrange(i.size[0]):
+    for y in xrange(i.size[1]):
+        pixel = pixel_data[x, y]
+        if pixel[0] < 220 and pixel[1] < 220 and pixel[2] > 130:
+            pixel_data[x, y] = (255, 255, 255)
+        else:
+            pixel_data[x, y] = (0, 0, 0)
+
 i.show()
 
 captcha_text = raw_input('CAPTCHA: ')
