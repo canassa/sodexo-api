@@ -12,20 +12,6 @@ POST_URL = 'https://sodexosaldocartao.com.br/saldocartao/consultaSaldo.do?operat
 CAPTCHA_URL = 'https://sodexosaldocartao.com.br/saldocartao/jcaptcha.do'
 
 
-def solve_captcha(image):
-    pixel_data = image.load()
-
-    for x in xrange(image.size[0]):
-        for y in xrange(image.size[1]):
-            pixel = pixel_data[x, y]
-            if pixel[0] < 220 and pixel[1] < 220 and pixel[2] > 130:
-                pixel_data[x, y] = (255, 255, 255)
-            else:
-                pixel_data[x, y] = (0, 0, 0)
-
-    return image
-
-
 def parse_html(html):
     soup = BeautifulSoup(html)
 
