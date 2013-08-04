@@ -1,3 +1,5 @@
+from md5 import md5
+
 from PIL import Image
 
 
@@ -18,7 +20,7 @@ def prepocess_captcha(image):
                 pass
             elif pixel[0] > threshold and pixel[1] > threshold and pixel[2] > threshold:
                 # Letter pixel found!
-		output.append((x, y))
+                output.append((x, y))
 
     return set(output)
 
@@ -80,3 +82,10 @@ def region_to_image(region):
         pixels[p[0] - min_x, p[1] - min_y] = 0
 
     return image
+
+
+def save_regions(regions, base_path='data/'):
+    for r in regions:
+        image = region_to_image(r)
+        file_name = md5(image.tobytes()).hexdigest() + '.png'
+        image.save(base_path + file_name)
