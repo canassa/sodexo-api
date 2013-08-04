@@ -18,7 +18,7 @@ def prepocess_captcha(image):
                 pass
             elif pixel[0] > threshold and pixel[1] > threshold and pixel[2] > threshold:
                 # Letter pixel found!
-                output.push((x, y))
+		output.append((x, y))
 
     return set(output)
 
@@ -71,7 +71,7 @@ def get_dimensions(region):
 
 
 def region_to_image(region):
-    min_x, min_y, width, height = get_dimensions(region)
+    min_x, width, min_y, height = get_dimensions(region)
 
     image = Image.new('1', (width, height), 'white')
     pixels = image.load()
