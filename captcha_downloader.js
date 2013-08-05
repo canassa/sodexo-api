@@ -48,7 +48,7 @@ var start = Date.now(),
     file_quantity = 10000;
 
 multiple_download(file_quantity, function () {
-    var time = (Date.now() - start) / file_quantity;
+    var time = (Date.now() - start) / 1000;
     console.log('done');
     console.log('speed', file_quantity / time);
 });
