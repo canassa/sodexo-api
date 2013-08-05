@@ -1,4 +1,5 @@
 from md5 import md5
+import os
 
 from PIL import Image
 
@@ -89,3 +90,20 @@ def save_regions(regions, base_path='data/'):
         image = region_to_image(r)
         file_name = md5(image.tobytes()).hexdigest() + '.png'
         image.save(base_path + file_name)
+
+
+def generate_letter_iamges():
+    file_list = [f for f in os.listdir('captcha') if f.endswith('.jpg')]
+    print "Processing {0} files".format(len(file_list))
+
+    for i, file_name in enumerate(file_list):
+        if not i % 1000:
+            print "{0} of {1}".format(i, len(file_list))
+
+        image = Image.open('captcha/' + file_name)
+        regions = group_regions(prepocess_captcha(image))
+
+        if len(regions) != 5:
+            print "Ignoring file", file_name
+        else:
+            save_regions(regions)

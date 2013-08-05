@@ -1,3 +1,9 @@
+libpeerconnection.log
+data
+captcha/*
+node_modules
+
+
 *.py[cod]
 
 # C extensions
@@ -29,10 +35,3 @@ nosetests.xml
 # Translations
 *.mo
 
-# Mr Developer
-.mr.developer.cfg
-.project
-.pydevproject
-
-libpeerconnection.log
-data
